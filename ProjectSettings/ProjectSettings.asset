@@ -659,10 +659,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 08e765b8-41e6-41b1-a495-0db25dfe0843
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: mix-and-game-jam-2020
+  organizationId: rees
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
