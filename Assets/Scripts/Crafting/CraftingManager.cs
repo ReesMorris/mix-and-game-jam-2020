@@ -2,7 +2,8 @@
 
 public class CraftingManager : MonoBehaviour {
 
-  public CraftingRecipe[] recipes;
+  public CraftingRecipe[] buildables;
+  public CraftingRecipe[] craftables;
 
   private InventoryManager inventoryManager;
 

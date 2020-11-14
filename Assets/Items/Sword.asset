@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a565a2f3d8f7349f1a96acc413ed695f, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  id: 7
+  itemName: Sword
+  type: 2
+  maxStackSize: 64
+  sprite: {fileID: 21300000, guid: acea205396c1f4a1ca5495a718f7f002, type: 3}
+  tooltipText: Fight enemies for bountiful loot! Results may vary.
+  maxOnlyOne: 1

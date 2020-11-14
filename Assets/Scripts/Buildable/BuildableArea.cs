@@ -12,22 +12,8 @@ public class BuildableArea : MonoBehaviour {
 
 
   private void Start() {
+    BuildableAreaManager.onGridToggle += ToggleGrid;
     CreateBuildableArea();
-  }
-
-  private void Update() {
-    // if (Input.GetKeyDown(KeyCode.B)) {
-    //   ToggleGrid();
-    // }
-  }
-
-  public void ToggleGrid() {
-    foreach (BuildableTile tile in BuildableTiles) {
-      if (tile.gameObject.activeSelf)
-        tile.DisableTile();
-      else
-        tile.EnableTile();
-    }
   }
 
   public void CreateBuildableArea() {
@@ -41,6 +27,13 @@ public class BuildableArea : MonoBehaviour {
       tile.transform.SetParent(gameObject.transform);
       if (tile.gameObject.activeSelf)
         tile.gameObject.SetActive(false);
+    }
+  }
+
+  public void ToggleGrid(bool visible) {
+    foreach (BuildableTile tile in BuildableTiles) {
+      if (visible) tile.Show();
+      else tile.Hide();
     }
   }
 

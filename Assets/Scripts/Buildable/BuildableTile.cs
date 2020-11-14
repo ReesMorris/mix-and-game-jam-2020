@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class BuildableTile : MonoBehaviour {
 
+  public delegate void OnTilePlaced();
+  public static OnTilePlaced onTilePlaced;
+
+  public Sprite whiteTile;
+
   private bool empty = true;
   private SpriteRenderer spriteRenderer;
   private Color color;
-
-  public Sprite whiteTile;
-  public Sprite selectedTile;
+  private Item selectedTile;
+  private BuildableAreaManager buildableAreaManager;
 
   private void Start() {
     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -19,15 +23,16 @@ public class BuildableTile : MonoBehaviour {
     spriteRenderer.material.color = color;
   }
 
-  public void EnableTile() {
+  public void Show() {
     gameObject.SetActive(true);
+
+    if (!buildableAreaManager) buildableAreaManager = GameObject.Find("GameManager").GetComponent<BuildableAreaManager>();
+    selectedTile = buildableAreaManager.GetSelectedItem();
   }
 
-  public void DisableTile() {
-    if (empty) {
-      spriteRenderer.sprite = whiteTile;
+  public void Hide() {
+    if (empty)
       gameObject.SetActive(false);
-    }
   }
 
   public void UpdateTileSprite() {
@@ -36,29 +41,54 @@ public class BuildableTile : MonoBehaviour {
       spriteRenderer.material.color = color;
       spriteRenderer.sprite = whiteTile;
     } else {
-      spriteRenderer.sprite = selectedTile;
+      spriteRenderer.sprite = selectedTile.sprite;
     }
   }
 
   private void OnMouseOver() {
-    if (Input.GetMouseButtonDown(0) && empty) {
-      color.a = 1f;
-      spriteRenderer.material.color = color;
-      empty = false;
-      UpdateTileSprite();
-    }
-    if (Input.GetMouseButtonDown(1) && !empty) {
-      empty = true;
-      UpdateTileSprite();
-    }
-    if (empty) {
-      spriteRenderer.sprite = selectedTile;
+    if (selectedTile) {
+      // Demolish tool
+      if (selectedTile.itemName == "Demolish") {
+        if (!empty) {
+          color.a = 0.3f;
+          spriteRenderer.material.color = color;
+
+          if (Input.GetMouseButtonDown(0)) {
+            empty = true;
+            UpdateTileSprite();
+          }
+        }
+      }
+
+      // Build tool
+      else {
+        // Build item
+        if (Input.GetMouseButtonDown(0) && empty) {
+          if (buildableAreaManager.CanBuildSelectedItem()) {
+            color.a = 1f;
+            spriteRenderer.material.color = color;
+            empty = false;
+            UpdateTileSprite();
+            buildableAreaManager.OnTilePlaced();
+          }
+        }
+
+        // Show ghost preview
+        if (empty) {
+          spriteRenderer.sprite = selectedTile.sprite;
+        }
+      }
     }
   }
 
   private void OnMouseExit() {
-    if (empty) {
-      spriteRenderer.sprite = whiteTile;
+    if (selectedTile) {
+      if (empty) {
+        spriteRenderer.sprite = whiteTile;
+      } else {
+        color.a = 1f;
+        spriteRenderer.material.color = color;
+      }
     }
   }
 }

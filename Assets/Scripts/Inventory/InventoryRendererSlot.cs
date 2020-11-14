@@ -21,10 +21,10 @@ public class InventoryRendererSlot : MonoBehaviour, IPointerEnterHandler, IPoint
     if (!item) {
       hasItem = false;
       image.sprite = noImage;
-      count.text = "";
+      if (count) count.text = "";
     } else {
       image.sprite = item.sprite;
-      count.text = _count.ToString();
+      if (count) count.text = _count.ToString();
       tooltipName.text = item.name;
       tooltipDesc.text = item.tooltipText;
       hasItem = _count > 0;

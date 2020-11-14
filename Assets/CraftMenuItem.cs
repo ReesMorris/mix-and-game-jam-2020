@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class BuildMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class CraftMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
   public Image image;
   public TMPro.TMP_Text itemName;
@@ -14,12 +14,10 @@ public class BuildMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
   private Image itemBackground;
   private CraftingRecipe recipe;
   private InventoryManager inventoryManager;
-
-  void Start() {
-    InventoryManager.onInventoryChange += OnInventoryChange;
-  }
+  private bool hasAllIngredients;
 
   public void Init(CraftingRecipe _recipe) {
+    InventoryManager.onInventoryChange += OnInventoryChange;
     inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
     itemBackground = GetComponent<Image>();
     recipe = _recipe;
@@ -33,9 +31,14 @@ public class BuildMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
   void UpdateTooltip() {
     if (recipe != null) {
       tooltipText.text = recipe.output.item.tooltipText;
-      bool hasAllIngredients = true;
+      hasAllIngredients = true;
 
-      if (recipe.ingredients.Length > 0) {
+      if (inventoryManager.ItemCount(recipe.output.item) > 0) {
+        hasAllIngredients = false;
+        tooltipText.text += "<br><color=green>Already Owned</color>";
+      }
+
+      if (hasAllIngredients && recipe.ingredients.Length > 0) {
         tooltipText.text += "<br>";
         foreach (CraftingRecipeItem ingredient in recipe.ingredients) {
           int inventoryCount = inventoryManager.ItemCount(ingredient.item);
@@ -49,10 +52,10 @@ public class BuildMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
           tooltipText.text += inventoryCount + "/" + ingredient.quantity + " " + ingredient.item.name;
           tooltipText.text += "</color>";
         }
-
-        if (hasAllIngredients) itemBackground.color = new Color(0.4f, 0.85f, 1f);
-        else itemBackground.color = new Color(0.85f, 0.43f, 1f);
       }
+
+      if (hasAllIngredients) itemBackground.color = new Color(0.4f, 0.85f, 1f);
+      else itemBackground.color = new Color(0.85f, 0.43f, 1f);
     }
   }
 
@@ -67,5 +70,13 @@ public class BuildMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
   public void OnPointerExit(PointerEventData eventData) {
     tooltipObject.SetActive(false);
+  }
+
+  public void OnClick() {
+    if (hasAllIngredients) {
+      inventoryManager.AddItemToInventory(recipe.output.item, recipe.output.quantity);
+      foreach (CraftingRecipeItem item in recipe.ingredients)
+        inventoryManager.RemoveItemFromInventory(item.item, item.quantity);
+    }
   }
 }

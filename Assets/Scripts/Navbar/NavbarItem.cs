@@ -2,7 +2,7 @@
 
 public class NavbarItem : MonoBehaviour {
 
-  public enum QuickKeyCode { B, I }
+  public enum QuickKeyCode { B, C, I }
   public GameObject associatedMenu;
   public QuickKeyCode keyCode;
 

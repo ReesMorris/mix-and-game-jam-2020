@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryRenderer : MonoBehaviour {
+public class ItemsRenderer : MonoBehaviour {
 
+  public GameObject container;
   public InventoryRendererSlot slotPrefab;
 
   private List<InventoryRendererSlot> slots;
 
   void Start() {
+    container.SetActive(false);
     slots = new List<InventoryRendererSlot>();
     InventoryManager.onInventoryChange += OnInventoryChange;
   }
@@ -24,9 +26,10 @@ public class InventoryRenderer : MonoBehaviour {
       InventorySlot item = inventory[i];
 
       if (item != null) {
-        if (item.item.type != Item.Types.Craftable) {
-          slots.Add(Instantiate(slotPrefab, gameObject.transform));
+        if (item.item.type == Item.Types.Craftable) {
+          slots.Add(Instantiate(slotPrefab, container.transform));
           slots[slots.Count - 1].UpdateDisplay(item.count, item.item);
+          container.SetActive(true);
         }
       }
     }
