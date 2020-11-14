@@ -8,19 +8,18 @@ public class InventoryManager : MonoBehaviour {
   public delegate void OnInventoryIncrease(int amount);
   public static OnInventoryIncrease onInventoryIncrease;
 
-  public Item apple; // TODO(REES): Remove
-  public Item banana; // TODO(REES): Remove
+  public InventoryStartingItem[] startingItems;
   public int slots = 10;
 
   private List<InventorySlot> inventoryItems;
 
   void Start() {
     inventoryItems = new List<InventorySlot>();
-  }
 
-  void Update() {
-    if (Input.GetKeyUp(KeyCode.Alpha1)) AddItemToInventory(apple, 100);
-    if (Input.GetKeyUp(KeyCode.Alpha2)) AddItemToInventory(banana, 1);
+    // Add starting items to inventory
+    foreach (InventoryStartingItem startingItem in startingItems) {
+      AddItemToInventory(startingItem.item, startingItem.quantity);
+    }
   }
 
   // Adds an item to the inventory
@@ -44,7 +43,6 @@ public class InventoryManager : MonoBehaviour {
       while (itemsAdded < count && !InventoryIsFull()) {
         int amountToAdd = Mathf.Min(count - itemsAdded, item.maxStackSize);
         itemsAdded += amountToAdd;
-
         InventorySlot newSlot = new InventorySlot(item, amountToAdd);
         int firstFreeSlot = FirstFreeSlot();
         if (firstFreeSlot == -1) inventoryItems.Add(newSlot);
