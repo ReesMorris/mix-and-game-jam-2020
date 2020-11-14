@@ -5,7 +5,19 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour {
 
   public GameObject Player;
+  public Transform CameraFightPos;
+
+  private MobTrigger mobTrigger;
+
+  private void Start() {
+    mobTrigger = Player.transform.Find("PickupableTrigger").GetComponent<MobTrigger>();
+  }
+
   void Update() {
-    transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, transform.position.z);
+    if (mobTrigger.Fighting) {
+      transform.position = new Vector3(CameraFightPos.position.x, CameraFightPos.position.y, transform.position.z);
+    } else {
+      transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, transform.position.z);
+    }
   }
 }

@@ -12,19 +12,23 @@ public class PlayerMovement : MonoBehaviour {
   private string moveXAxis = "Horizontal";
   private string moveYAxis = "Vertical";
   private SpriteRenderer spriteRenderer;
+  private MobTrigger mobTrigger;
 
   void Start() {
     rigidbody = GetComponent<Rigidbody>();
     rigidbody.centerOfMass = Vector3.zero;
     rigidbody.inertiaTensorRotation = Quaternion.identity;
     spriteRenderer = GetComponent<SpriteRenderer>();
+    mobTrigger = transform.Find("PickupableTrigger").GetComponent<MobTrigger>();
   }
 
   void FixedUpdate() {
-    float inputX = Input.GetAxisRaw(moveXAxis);
-    float inputY = Input.GetAxisRaw(moveYAxis);
+    if (!mobTrigger.Fighting) {
+      float inputX = Input.GetAxisRaw(moveXAxis);
+      float inputY = Input.GetAxisRaw(moveYAxis);
 
-    RunForces(inputX, inputY);
+      RunForces(inputX, inputY);
+    }
   }
 
   void RunForces(float inputX, float inputY) {
