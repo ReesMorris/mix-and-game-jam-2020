@@ -16,9 +16,9 @@ public class BuildableArea : MonoBehaviour {
   }
 
   private void Update() {
-    if (Input.GetKeyDown(KeyCode.B)) {
-      ToggleGrid();
-    }
+    // if (Input.GetKeyDown(KeyCode.B)) {
+    //   ToggleGrid();
+    // }
   }
 
   public void ToggleGrid() {

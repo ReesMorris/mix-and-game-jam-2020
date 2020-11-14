@@ -78,12 +78,15 @@ public class InventoryManager : MonoBehaviour {
 
   // Returns a boolean if a player has enough items in their inventory
   public int ItemCount(Item item) {
-    int cumulativeCount = 0;
-    foreach (InventorySlot slot in inventoryItems)
-      if (slot != null)
-        if (slot.item.id == item.id)
-          cumulativeCount += slot.count;
-    return cumulativeCount;
+    if (inventoryItems != null) {
+      int cumulativeCount = 0;
+      foreach (InventorySlot slot in inventoryItems)
+        if (slot != null)
+          if (slot.item.id == item.id)
+            cumulativeCount += slot.count;
+      return cumulativeCount;
+    }
+    return 0;
   }
 
   // Removes an item from inventory, ignoring whether the player has enough
