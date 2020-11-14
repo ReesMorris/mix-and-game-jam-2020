@@ -15,6 +15,11 @@ public class Pickupable : MonoBehaviour {
     spriteRenderer.sprite = item.sprite;
   }
 
+  public void Init(Item _item, int _quantity) {
+    item = _item;
+    quantity = _quantity;
+  }
+
   public void Pickup() {
     inventoryManager.AddItemToInventory(item, quantity);
     Destroy(gameObject);
