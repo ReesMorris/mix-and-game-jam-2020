@@ -95,10 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d229447ea074007b2040aefa3d12f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  empty: 1
-  sprites:
-  - {fileID: 21300000, guid: 0f8603e87eeee446d968f77bd0abbdb9, type: 3}
-  - {fileID: -832032371237296356, guid: 07b08651343384466bc01d16393057d3, type: 3}
+  whiteTile: {fileID: 21300000, guid: 0f8603e87eeee446d968f77bd0abbdb9, type: 3}
+  selectedTile: {fileID: 21300000, guid: cde968863d6f1443a9fe4336513f6b7a, type: 3}
 --- !u!65 &-3157804619409891270
 BoxCollider:
   m_ObjectHideFlags: 0

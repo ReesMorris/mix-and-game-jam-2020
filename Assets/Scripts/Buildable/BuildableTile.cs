@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BuildableTile : MonoBehaviour {
 
@@ -9,7 +8,8 @@ public class BuildableTile : MonoBehaviour {
   private SpriteRenderer spriteRenderer;
   private Color color;
 
-  public Sprite[] sprites;
+  public Sprite whiteTile;
+  public Sprite selectedTile;
 
   private void Start() {
     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -25,7 +25,7 @@ public class BuildableTile : MonoBehaviour {
 
   public void DisableTile() {
     if (empty) {
-      spriteRenderer.sprite = sprites[0];
+      spriteRenderer.sprite = whiteTile;
       gameObject.SetActive(false);
     }
   }
@@ -34,11 +34,12 @@ public class BuildableTile : MonoBehaviour {
     if (empty) {
       color.a = 0.2f;
       spriteRenderer.material.color = color;
-      spriteRenderer.sprite = sprites[0];
+      spriteRenderer.sprite = whiteTile;
     } else {
-      spriteRenderer.sprite = sprites[1];
+      spriteRenderer.sprite = selectedTile;
     }
   }
+
   private void OnMouseOver() {
     if (Input.GetMouseButtonDown(0) && empty) {
       color.a = 1f;
@@ -51,12 +52,13 @@ public class BuildableTile : MonoBehaviour {
       UpdateTileSprite();
     }
     if (empty) {
-      spriteRenderer.sprite = sprites[1];
+      spriteRenderer.sprite = selectedTile;
     }
   }
+
   private void OnMouseExit() {
     if (empty) {
-      spriteRenderer.sprite = sprites[0];
+      spriteRenderer.sprite = whiteTile;
     }
   }
 }

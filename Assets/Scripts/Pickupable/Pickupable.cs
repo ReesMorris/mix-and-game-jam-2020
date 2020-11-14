@@ -3,6 +3,7 @@
 public class Pickupable : MonoBehaviour {
 
   public Item item;
+  public int quantity = 1;
   public TMPro.TMP_Text text;
 
   private InventoryManager inventoryManager;
@@ -15,12 +16,13 @@ public class Pickupable : MonoBehaviour {
   }
 
   public void Pickup() {
-    inventoryManager.AddItemToInventory(item, 1);
+    inventoryManager.AddItemToInventory(item, quantity);
     Destroy(gameObject);
   }
 
   public void ShowText(bool withTabText) {
-    text.text = "[F] " + item.itemName;
+    if (quantity == 1) text.text = "[F] " + item.itemName;
+    if (quantity > 1) text.text = "[F] " + item.itemName + " (x" + quantity + ")";
     if (withTabText) text.text += "<br><size=0.8>[TAB] CYCLE</size>";
     text.gameObject.SetActive(true);
   }

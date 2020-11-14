@@ -5,6 +5,8 @@ public class InventoryManager : MonoBehaviour {
 
   public delegate void OnInventoryChange(List<InventorySlot> inventory);
   public static OnInventoryChange onInventoryChange;
+  public delegate void OnInventoryIncrease(int amount);
+  public static OnInventoryIncrease onInventoryIncrease;
 
   public Item apple; // TODO(REES): Remove
   public Item banana; // TODO(REES): Remove
@@ -51,8 +53,12 @@ public class InventoryManager : MonoBehaviour {
     }
 
     // Call the delegate
-    if (itemsAdded > 0)
-      onInventoryChange(inventoryItems);
+    if (itemsAdded > 0) {
+      if (onInventoryChange != null)
+        onInventoryChange(inventoryItems);
+      if (onInventoryIncrease != null)
+        onInventoryIncrease(itemsAdded);
+    }
   }
 
   // Returns true if an inventory slot is full
@@ -103,6 +109,7 @@ public class InventoryManager : MonoBehaviour {
     }
 
     if (itemsRemoved > 0)
-      onInventoryChange(inventoryItems);
+      if (onInventoryChange != null)
+        onInventoryChange(inventoryItems);
   }
 }

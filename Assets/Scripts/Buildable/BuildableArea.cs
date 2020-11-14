@@ -5,7 +5,6 @@ using UnityEngine;
 public class BuildableArea : MonoBehaviour {
 
   private List<BuildableTile> BuildableTiles;
-  public bool ActiveBA = false;
 
   public BuildableTile buildableTile;
   public int HorizontalTiles;
@@ -18,11 +17,11 @@ public class BuildableArea : MonoBehaviour {
 
   private void Update() {
     if (Input.GetKeyDown(KeyCode.B)) {
-      EnableDisableGrid();
+      ToggleGrid();
     }
   }
 
-  public void EnableDisableGrid() {
+  public void ToggleGrid() {
     foreach (BuildableTile tile in BuildableTiles) {
       if (tile.gameObject.activeSelf)
         tile.DisableTile();
