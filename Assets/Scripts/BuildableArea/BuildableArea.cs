@@ -24,12 +24,10 @@ public class BuildableArea : MonoBehaviour {
 
   public void EnableDisableGrid() {
     foreach (BuildableTile tile in BuildableTiles) {
-      if (tile.gameObject.active) {
+      if (tile.gameObject.activeSelf)
         tile.DisableTile();
-
-      } else {
+      else
         tile.EnableTile();
-      }
     }
   }
 
@@ -42,7 +40,8 @@ public class BuildableArea : MonoBehaviour {
     }
     foreach (BuildableTile tile in BuildableTiles) {
       tile.transform.SetParent(gameObject.transform);
-      if (tile.gameObject.active) tile.gameObject.SetActive(false);
+      if (tile.gameObject.activeSelf)
+        tile.gameObject.SetActive(false);
     }
   }
 

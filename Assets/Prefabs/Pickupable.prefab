@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56e362eaa9fc4a2f970a9c5641ebd38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 7031750b19f9c444dbbf2bfada4991c3, type: 2}
+  item: {fileID: 11400000, guid: 40577b89f38764d3ca50e59a9fc245b2, type: 2}
   text: {fileID: 7074114326923489182}
 --- !u!1 &7074114328197374527
 GameObject:
@@ -399,7 +399,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &7074114328197374514
 MonoBehaviour:
