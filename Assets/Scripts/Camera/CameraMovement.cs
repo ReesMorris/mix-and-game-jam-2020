@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour {
   private MobTrigger mobTrigger;
 
   private void Start() {
-    mobTrigger = Player.transform.Find("PickupableTrigger").GetComponent<MobTrigger>();
+    mobTrigger = Player.transform.Find("PlayerTrigger").GetComponent<MobTrigger>();
   }
 
   void Update() {

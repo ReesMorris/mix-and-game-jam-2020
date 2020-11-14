@@ -24,6 +24,8 @@ public class MobTrigger : MonoBehaviour {
     SpriteRenderer playerSprite = transform.parent.gameObject.GetComponent<SpriteRenderer>();
     if (playerSprite.flipX) playerSprite.flipX = false;
     transform.parent.position = new Vector2(PlayerFightSpawn.transform.position.x, PlayerFightSpawn.transform.position.y);
+    PlayerMovement pm = transform.parent.gameObject.GetComponent<PlayerMovement>();
+    pm.CanMove(false);
     Mob.transform.position = new Vector2(MobFightSpawn.transform.position.x, MobFightSpawn.transform.position.y);
     Fighting = true;
 
