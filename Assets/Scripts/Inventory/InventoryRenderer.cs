@@ -24,8 +24,8 @@ public class InventoryRenderer : MonoBehaviour {
   void OnInventoryChange(List<InventorySlot> inventory) {
     for (int i = 0; i < inventory.Count; i++) {
       InventorySlot item = inventory[i];
-      if (item != null)
-        slots[i].UpdateDisplay(item.count, item.item);
+      if (item != null) slots[i].UpdateDisplay(item.count, item.item);
+      else slots[i].UpdateDisplay(0, null);
     }
   }
 }

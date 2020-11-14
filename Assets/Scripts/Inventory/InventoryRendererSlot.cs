@@ -11,13 +11,24 @@ public class InventoryRendererSlot : MonoBehaviour, IPointerEnterHandler, IPoint
   public TMPro.TMP_Text tooltipDesc;
 
   private bool hasItem = false;
+  private Sprite noImage;
+
+  void Start() {
+    noImage = image.sprite;
+  }
 
   public void UpdateDisplay(int _count, Item item) {
-    image.sprite = item.sprite;
-    count.text = _count.ToString();
-    tooltipName.text = item.name;
-    tooltipDesc.text = item.tooltipText;
-    hasItem = _count > 0;
+    if (!item) {
+      hasItem = false;
+      image.sprite = noImage;
+      count.text = "";
+    } else {
+      image.sprite = item.sprite;
+      count.text = _count.ToString();
+      tooltipName.text = item.name;
+      tooltipDesc.text = item.tooltipText;
+      hasItem = _count > 0;
+    }
   }
 
   public void OnPointerEnter(PointerEventData eventData) {
