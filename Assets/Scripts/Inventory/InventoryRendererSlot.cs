@@ -27,6 +27,11 @@ public class InventoryRendererSlot : MonoBehaviour, IPointerEnterHandler, IPoint
       if (count) count.text = _count.ToString();
       tooltipName.text = item.name;
       tooltipDesc.text = item.tooltipText;
+
+      int saleValue = item.saleValue;
+      if (saleValue > 0)
+        tooltipDesc.text += "<br><color=grey>Sells for " + saleValue + " Coins</color>";
+
       hasItem = _count > 0;
     }
   }

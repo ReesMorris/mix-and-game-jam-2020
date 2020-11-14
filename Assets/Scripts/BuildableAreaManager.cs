@@ -16,6 +16,7 @@ public class BuildableAreaManager : MonoBehaviour {
   }
 
   public void SetRecipe(CraftingRecipe item) {
+    print(item);
     selectedRecipe = item;
     SetGridVisible(item != null);
   }

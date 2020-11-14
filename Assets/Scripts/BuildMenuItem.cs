@@ -39,10 +39,10 @@ public class BuildMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
       hasAllIngredients = true;
 
       if (recipe.ingredients.Length > 0) {
-        tooltipText.text += "<br>";
         foreach (CraftingRecipeItem ingredient in recipe.ingredients) {
           int inventoryCount = inventoryManager.ItemCount(ingredient.item);
 
+          tooltipText.text += "<br>";
           if (inventoryCount >= ingredient.quantity) {
             tooltipText.text += "<color=green>";
           } else {

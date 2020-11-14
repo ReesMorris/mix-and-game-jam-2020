@@ -11,5 +11,5 @@ public class Item : ScriptableObject {
   public int maxStackSize = 64;
   public Sprite sprite;
   public string tooltipText;
-  public bool maxOnlyOne;
+  public int saleValue;
 }

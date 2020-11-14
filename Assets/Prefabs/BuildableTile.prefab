@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7206218209384105208}
   - component: {fileID: 160186223671527009}
   - component: {fileID: -3157804619409891270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BuildableTile
-  m_TagString: Untagged
+  m_TagString: BuildableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteTile: {fileID: 21300000, guid: 0f8603e87eeee446d968f77bd0abbdb9, type: 3}
-  selectedTile: {fileID: 21300000, guid: cde968863d6f1443a9fe4336513f6b7a, type: 3}
 --- !u!65 &-3157804619409891270
 BoxCollider:
   m_ObjectHideFlags: 0

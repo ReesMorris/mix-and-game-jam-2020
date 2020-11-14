@@ -55,6 +55,7 @@ public class BuildableTile : MonoBehaviour {
 
           if (Input.GetMouseButtonDown(0)) {
             empty = true;
+            gameObject.layer = 8;
             UpdateTileSprite();
           }
         }
@@ -68,6 +69,7 @@ public class BuildableTile : MonoBehaviour {
             color.a = 1f;
             spriteRenderer.material.color = color;
             empty = false;
+            gameObject.layer = 0;
             UpdateTileSprite();
             buildableAreaManager.OnTilePlaced();
           }
