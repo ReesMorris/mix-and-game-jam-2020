@@ -7,14 +7,14 @@ public class CameraMovement : MonoBehaviour {
   public GameObject Player;
   public Transform CameraFightPos;
 
-  private MobTrigger mobTrigger;
+  private FightManager fightManager;
 
   private void Start() {
-    mobTrigger = Player.transform.Find("PlayerTrigger").GetComponent<MobTrigger>();
+    fightManager = GameObject.Find("GameManager").GetComponent<FightManager>();
   }
 
-  void Update() {
-    if (mobTrigger.Fighting) {
+  private void Update() {
+    if (fightManager != null && fightManager.Fighting()) {
       transform.position = new Vector3(CameraFightPos.position.x, CameraFightPos.position.y, transform.position.z);
     } else {
       transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, transform.position.z);

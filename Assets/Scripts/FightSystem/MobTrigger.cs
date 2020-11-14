@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class MobTrigger : MonoBehaviour {
 
-  private GameObject Mob;
+  private GameObject Player;
   private bool possibleFight = false;
+  private FightManager fightManager;
 
   public TMPro.TMP_Text Text;
   public Transform PlayerFightSpawn;
   public Transform MobFightSpawn;
-  public bool Fighting = false;
+
+  private void Start() {
+    fightManager = GameObject.Find("GameManager").GetComponent<FightManager>();
+  }
 
   private void Update() {
     if (Input.GetKeyDown(KeyCode.F) && possibleFight) {
@@ -21,21 +25,21 @@ public class MobTrigger : MonoBehaviour {
   }
 
   private void TeleportFighters() {
-    SpriteRenderer playerSprite = transform.parent.gameObject.GetComponent<SpriteRenderer>();
+    SpriteRenderer playerSprite = Player.GetComponent<SpriteRenderer>();
     if (playerSprite.flipX) playerSprite.flipX = false;
-    transform.parent.position = new Vector2(PlayerFightSpawn.transform.position.x, PlayerFightSpawn.transform.position.y);
-    PlayerMovement pm = transform.parent.gameObject.GetComponent<PlayerMovement>();
+    Player.transform.position = new Vector2(PlayerFightSpawn.transform.position.x, PlayerFightSpawn.transform.position.y);
+    PlayerMovement pm = Player.GetComponent<PlayerMovement>();
     pm.CanMove(false);
-    Mob.transform.position = new Vector2(MobFightSpawn.transform.position.x, MobFightSpawn.transform.position.y);
-    Fighting = true;
+    transform.parent.position = new Vector2(MobFightSpawn.transform.position.x, MobFightSpawn.transform.position.y);
+    fightManager.CanFight(true);
 
   }
 
   private void OnTriggerEnter(Collider other) {
-    if (other.tag == "Mob") {
+    if (other.tag == "Player") {
       possibleFight = true;
       Text.gameObject.SetActive(true);
-      Mob = other.transform.parent.gameObject;
+      Player = other.transform.parent.gameObject;
     }
   }
   private void OnTriggerExit(Collider other) {
