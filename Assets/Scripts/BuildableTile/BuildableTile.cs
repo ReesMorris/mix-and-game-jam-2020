@@ -15,12 +15,15 @@ public class BuildableTile : MonoBehaviour {
   private void Start() {
     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     color = spriteRenderer.material.color;
+
     color.a = 0.2f;
     spriteRenderer.material.color = color;
   }
 
   public void UpdateTile() {
     if (empty) {
+      color.a = 0.2f;
+      spriteRenderer.material.color = color;
       spriteRenderer.sprite = sprites[0];
     } else {
       spriteRenderer.sprite = sprites[1];
@@ -28,6 +31,16 @@ public class BuildableTile : MonoBehaviour {
   }
 
   void OnMouseOver() {
+    if (Input.GetMouseButtonDown(0) && empty) {
+      color.a = 1f;
+      spriteRenderer.material.color = color;
+      empty = false;
+      UpdateTile();
+    }
+    if (Input.GetMouseButtonDown(1) && !empty) {
+      empty = true;
+      UpdateTile();
+    }
     if (empty) {
       spriteRenderer.sprite = sprites[1];
     }
@@ -38,14 +51,4 @@ public class BuildableTile : MonoBehaviour {
       spriteRenderer.sprite = sprites[0];
     }
   }
-
-
-  private void OnMouseDown() {
-    color.a = 1f;
-    spriteRenderer.material.color = color;
-    empty = false;
-    UpdateTile();
-  }
-
-
 }
