@@ -4,37 +4,41 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+
+  public float speed = 10f;
+  public Animator animator;
+
   private Rigidbody rigidbody;
   private string moveXAxis = "Horizontal";
   private string moveYAxis = "Vertical";
-  public float speed = 10f;
-  public Animator animator;
-  private void Start() {
+  private SpriteRenderer spriteRenderer;
+
+  void Start() {
     rigidbody = GetComponent<Rigidbody>();
     rigidbody.centerOfMass = Vector3.zero;
     rigidbody.inertiaTensorRotation = Quaternion.identity;
+    spriteRenderer = GetComponent<SpriteRenderer>();
   }
 
-  private void FixedUpdate() {
+  void FixedUpdate() {
     float inputX = Input.GetAxisRaw(moveXAxis);
     float inputY = Input.GetAxisRaw(moveYAxis);
 
     RunForces(inputX, inputY);
   }
 
-  void RunForces (float inputX, float inputY) {
+  void RunForces(float inputX, float inputY) {
     MoveX(inputX);
     MoveY(inputY);
 
-    if (Mathf.Abs(inputX) != 0 || Mathf.Abs(inputY) != 0)  animator.SetFloat("Speed", 1);    
-    else  animator.SetFloat("Speed", 0);
-
-  } 
+    if (Mathf.Abs(inputX) != 0 || Mathf.Abs(inputY) != 0) animator.SetFloat("Speed", 1);
+    else animator.SetFloat("Speed", 0);
+  }
 
   void MoveX(float input) {
     rigidbody.AddForce(new Vector3(1, 0, 0) * speed * input, ForceMode.Force);
-    if(transform.eulerAngles.y != 180 && input < 0) transform.eulerAngles = new Vector3( transform.eulerAngles.x, 180, transform.eulerAngles.z);
-    if(transform.eulerAngles.y != 0 && input > 0) transform.eulerAngles = new Vector3( transform.eulerAngles.x, 0, transform.eulerAngles.z);
+    if (!spriteRenderer.flipX && input < 0) spriteRenderer.flipX = true;
+    if (spriteRenderer.flipX && input > 0) spriteRenderer.flipX = false;
 
   }
 

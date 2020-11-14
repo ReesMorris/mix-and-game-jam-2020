@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 2
   itemName: Banana
   maxStackSize: 64
-  sprite: {fileID: 21300000, guid: b1207f61f65c74a2fba519a46be99d94, type: 3}
+  sprite: {fileID: 21300000, guid: 8fbfb9d64f0d0480f809917360e586fa, type: 3}
   tooltipText: A healthy source of potassium.
