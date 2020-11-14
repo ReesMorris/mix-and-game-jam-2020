@@ -20,19 +20,33 @@ public class MobTrigger : MonoBehaviour {
 
   private void Update() {
     if (Input.GetKeyDown(KeyCode.F) && possibleFight) {
+      Player.GetComponent<PlayerFight>().SetPlayerOldPosition(Player.transform.position);
       TeleportFighters();
     }
   }
 
   private void TeleportFighters() {
+
+    // Make sure player is facing right direction
     SpriteRenderer playerSprite = Player.GetComponent<SpriteRenderer>();
     if (playerSprite.flipX) playerSprite.flipX = false;
+
+    // Positioning the player
     Player.transform.position = new Vector2(PlayerFightSpawn.transform.position.x, PlayerFightSpawn.transform.position.y);
     PlayerMovement pm = Player.GetComponent<PlayerMovement>();
-    pm.CanMove(false);
-    transform.parent.position = new Vector2(MobFightSpawn.transform.position.x, MobFightSpawn.transform.position.y);
-    fightManager.CanFight(true);
+    pm.CanMove(false); // player cannot move
 
+    // positioning mob
+    transform.parent.position = new Vector2(MobFightSpawn.transform.position.x, MobFightSpawn.transform.position.y);
+
+    // ready to fight
+    fightManager.CanFight(true);
+    fightManager.SetOpponent(transform.parent.gameObject.GetComponent<Mob>()); // setting player's opponent
+
+    // activate health bars
+    fightManager.ShowFightUI(true);
+
+    print("hello");
   }
 
   private void OnTriggerEnter(Collider other) {
