@@ -30,6 +30,14 @@ public class BuildableTile : MonoBehaviour {
     selectedTile = buildableAreaManager.GetSelectedItem();
   }
 
+  public bool IsEmpty() {
+    return empty;
+  }
+
+  public Item GetSelectedTile() {
+    return selectedTile;
+  }
+
   public void Hide() {
     if (empty)
       gameObject.SetActive(false);

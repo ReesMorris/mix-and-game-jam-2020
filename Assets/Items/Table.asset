@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 9
   itemName: Table
-  type: 0
+  type: 1
   maxStackSize: 64
-  sprite: {fileID: 21300000, guid: 97627bb4e4ce6407181b1b24da98dda0, type: 3}
+  sprite: {fileID: 21300000, guid: bc12463aa5b164b139892ac219ec816b, type: 3}
   tooltipText: A sturdy piece of wood.
-  saleValue: 14
+  saleValue: 0

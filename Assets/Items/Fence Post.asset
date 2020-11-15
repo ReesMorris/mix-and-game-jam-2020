@@ -18,4 +18,4 @@ MonoBehaviour:
   maxStackSize: 64
   sprite: {fileID: -832032371237296356, guid: 07b08651343384466bc01d16393057d3, type: 3}
   tooltipText: A sturdy post.
-  saleValue: 11
+  saleValue: 0

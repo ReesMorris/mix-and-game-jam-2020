@@ -124202,7 +124202,7 @@ GameObject:
   - component: {fileID: 1469396790}
   - component: {fileID: 1469396789}
   - component: {fileID: 1469396794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -125140,6 +125140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763559a310bef4ca6b52c465ea292585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTurn: 0
+  Buttons: []
 --- !u!114 &1954704958
 MonoBehaviour:
   m_ObjectHideFlags: 0
