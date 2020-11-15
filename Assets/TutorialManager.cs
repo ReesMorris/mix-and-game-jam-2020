@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour {
     playerChatBubble.QueueText(new ChatMessage("Ghost Island™!", 1));
     playerChatBubble.QueueText(new ChatMessage("I suppose I should start following my court order mandate.."));
     playerChatBubble.QueueText(new ChatMessage("The sooner I have built this shop, the sooner I can go home!", 1));
-    playerChatBubble.QueueText(new ChatMessage("First thing's first, let's head north and go see the plot of land."));
+    playerChatBubble.QueueText(new ChatMessage("First thing's first, let's head directly north and go see the empty plot of land."));
     yield return new WaitForSeconds(22f);
     playerMovement.CanMove(true);
     tutorialIndex = 1;
