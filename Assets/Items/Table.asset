@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Table
   type: 1
   maxStackSize: 64
-  sprite: {fileID: 21300000, guid: bc12463aa5b164b139892ac219ec816b, type: 3}
+  sprite: {fileID: 8327987694542033328, guid: f035b6bdb0e0444a49a69b1129996756, type: 3}
   tooltipText: A sturdy piece of wood.
   saleValue: 0

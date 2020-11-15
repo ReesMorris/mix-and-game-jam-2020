@@ -47,7 +47,6 @@ public class Mob : MonoBehaviour {
   }
 
   public void Attack(int damage) {
-    Debug.Log("Attack func");
     StopCoroutine(AttackPhase(damage));
     StartCoroutine(AttackPhase(damage));
   }
@@ -78,7 +77,6 @@ public class Mob : MonoBehaviour {
 
   private IEnumerator AttackPhase(int damage) {
     if (fakeMob != null) {
-      Debug.Log("Attack couroutine");
       // Disableing Mob main sprite
       gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
@@ -108,12 +106,13 @@ public class Mob : MonoBehaviour {
       //Updating turn and showing buttons for player's turn
       fightManager.currentTurn = FightManager.Turn.Player;
       fightManager.ButtonsActive(true);
-      print("mob attack ended");
 
     }
   }
 
   private IEnumerator EndFight() {
+
+    print("!!! Player defeated mob");
 
     // Interrupting animation if running
     animationRunning = false;
@@ -138,7 +137,6 @@ public class Mob : MonoBehaviour {
     ResetForNextFight(); // Resetting
     fightManager.ActivateFakeMobs(); // Activating animated models for attacks
     Destroy(gameObject); // Mob is destroyed
-    print("fight ended");
   }
 
   private void ResetForNextFight() {

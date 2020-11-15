@@ -30,7 +30,7 @@ public class TutorialManager : MonoBehaviour {
   }
 
   public void OnPlayerCollision(int sequence) {
-    if (sequence == 1 && tutorialIndex == 1) StartCoroutine(Tutorial1());
+    if (sequence == 1 && tutorialIndex == 1 && !sequencePlaying) StartCoroutine(Tutorial1());
   }
 
   void OnNavbarMenuToggle(string name, bool isOpen) {

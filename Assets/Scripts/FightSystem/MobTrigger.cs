@@ -56,7 +56,7 @@ public class MobTrigger : MonoBehaviour {
     if (other.tag == "Player") {
       possibleFight = true;
       Text.gameObject.SetActive(true);
-      Player = other.transform.parent.gameObject;
+      Player = other.transform.gameObject;
     }
   }
   private void OnTriggerExit(Collider other) {

@@ -23,6 +23,7 @@ public class NPCManager : MonoBehaviour {
   public void SpawnNPC() {
     NPC npc = Instantiate(npcPrefab);
     npc.Init(GetRandomWaypoints(beforeShop), GetRandomWaypoints(afterShop), skins[Random.Range(0, skins.Length)]);
+
   }
 
   public List<Transform> GetRandomWaypoints(NPCWaypoints[] waypoints) {
