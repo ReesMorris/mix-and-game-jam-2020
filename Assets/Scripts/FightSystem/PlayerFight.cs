@@ -17,6 +17,7 @@ public class PlayerFight : MonoBehaviour {
   private bool animationRunning = false;
   private Vector3 playerOldPosition;
   private bool dead = false;
+  private AudioManager audioManager;
 
   private void Start() {
     CurrentHealth = MaxHealth;
@@ -25,6 +26,7 @@ public class PlayerFight : MonoBehaviour {
     fightManager = GameObject.Find("GameManager").GetComponent<FightManager>();
     animator = GetComponent<Animator>();
     rigidbody = GetComponent<Rigidbody>();
+    audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
   }
 
   public void SetPlayerOldPosition(Vector3 pos) {
@@ -92,6 +94,9 @@ public class PlayerFight : MonoBehaviour {
 
     // Damaging the opponent
     opponent.HealthDamaged(CurrentDamage);
+
+    // Play sound
+    audioManager.PlaySound(fightManager.hitClip, true);
 
     yield return new WaitForSeconds(1.65f);
 

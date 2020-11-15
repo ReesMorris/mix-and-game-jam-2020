@@ -21,6 +21,7 @@ public class Mob : MonoBehaviour {
 
   private GameObject fakeMob;
   private FightManager fightManager;
+  private AudioManager audioManager;
   private bool animationRunning = false;
   private bool defeated = false;
   private InventoryManager inventoryManager;
@@ -32,6 +33,7 @@ public class Mob : MonoBehaviour {
 
     fightManager = GameObject.Find("GameManager").GetComponent<FightManager>();
     inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
+    audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
   }
 
   private void Update() {
@@ -98,6 +100,9 @@ public class Mob : MonoBehaviour {
       yield return new WaitForSeconds(0.8f);
       // Damaging Player
       GameObject.Find("Player").GetComponent<PlayerFight>().HealthDamaged(damage);
+
+      // Sound
+      audioManager.PlaySound(fightManager.hitClip, true);
 
       yield return new WaitForSeconds(1.5f);
 

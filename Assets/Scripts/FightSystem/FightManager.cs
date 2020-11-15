@@ -11,6 +11,7 @@ public class FightManager : MonoBehaviour {
 
   public Turn currentTurn;
   public GameObject[] FakeMobs;
+  public AudioClip hitClip;
 
   public enum Turn {
     Player,
