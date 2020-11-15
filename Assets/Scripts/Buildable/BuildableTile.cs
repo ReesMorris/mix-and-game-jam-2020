@@ -13,6 +13,7 @@ public class BuildableTile : MonoBehaviour {
 
   private bool empty = true;
   private SpriteRenderer spriteRenderer;
+  private Item placedTile;
   private Color color;
   private Item selectedTile;
   private BuildableAreaManager buildableAreaManager;
@@ -42,6 +43,10 @@ public class BuildableTile : MonoBehaviour {
     return selectedTile;
   }
 
+  public Item GetPlacedTile() {
+    return placedTile;
+  }
+
   public void Hide() {
     if (empty)
       gameObject.SetActive(false);
@@ -68,6 +73,7 @@ public class BuildableTile : MonoBehaviour {
           if (Input.GetMouseButtonDown(0)) {
             audioManager.PlaySound(demolishSound, true);
             empty = true;
+            placedTile = null;
             gameObject.layer = 8;
             UpdateTileSprite();
           }
@@ -84,6 +90,7 @@ public class BuildableTile : MonoBehaviour {
             spriteRenderer.material.color = color;
             empty = false;
             gameObject.layer = 0;
+            placedTile = selectedTile;
             UpdateTileSprite();
             if (onTilePlaced != null) onTilePlaced(selectedTile);
             buildableAreaManager.OnTilePlaced();

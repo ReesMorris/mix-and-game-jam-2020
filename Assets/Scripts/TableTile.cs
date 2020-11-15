@@ -29,7 +29,7 @@ public class TableTile : MonoBehaviour {
   }
 
   void OnInventorySlotClick(Item item) {
-    if (buildableTile.GetSelectedTile() == tablePrefab) {
+    if (buildableTile.GetPlacedTile() == tablePrefab) {
       if (playerClose && item.saleValue > 0) {
         if (!tableItem.item) tableItem = new TableTileItem(item, 0);
         if (tableItem.item && item == tableItem.item) {
