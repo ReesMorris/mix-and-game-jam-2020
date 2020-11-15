@@ -443,7 +443,8 @@ MonoBehaviour:
   image: {fileID: 32451403195914862}
   count: {fileID: 7283666638634839348}
   tablePrefab: {fileID: 11400000, guid: 8659ddb950d25408282c29a28792cb3c, type: 2}
-  playerClose: 0
+  addSound: {fileID: 8300000, guid: 6f0269617553a4f30bc53f12bec0967e, type: 3}
+  removeSound: {fileID: 8300000, guid: c0a6d89fba07a4cb4a97dc14fecb6e2f, type: 3}
 --- !u!1 &8793673626058382486
 GameObject:
   m_ObjectHideFlags: 0
