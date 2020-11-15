@@ -244,6 +244,7 @@ MonoBehaviour:
   Text: {fileID: 1960929553538103742}
   PlayerFightSpawn: {fileID: 0}
   MobFightSpawn: {fileID: 0}
+  swordPrefab: {fileID: 11400000, guid: 52952405f16a34043ad01df36f5569da, type: 2}
 --- !u!1 &1960929554005810101
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,17 +11,23 @@ public class MobTrigger : MonoBehaviour {
   private GameObject Player;
   private bool possibleFight = false;
   private FightManager fightManager;
+  private InventoryManager inventoryManager;
+  private bool hasSword;
 
   public TMPro.TMP_Text Text;
   public Transform PlayerFightSpawn;
   public Transform MobFightSpawn;
+  public Item swordPrefab;
 
   private void Start() {
+    InventoryManager.onInventoryChange += OnInventoryChange;
     fightManager = GameObject.Find("GameManager").GetComponent<FightManager>();
+    inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
+    UpdateText();
   }
 
   private void Update() {
-    if (Input.GetKeyDown(KeyCode.F) && possibleFight) {
+    if (Input.GetKeyDown(KeyCode.F) && possibleFight && hasSword) {
       Player.GetComponent<PlayerFight>().SetPlayerOldPosition(Player.transform.position);
       transform.parent.GetComponent<Mob>().SetOldPosition(transform.position);
       if (onFightInitiate != null) onFightInitiate();
@@ -49,7 +55,18 @@ public class MobTrigger : MonoBehaviour {
 
     // activate health bars
     fightManager.ShowFightUI(true);
+  }
 
+  private void UpdateText() {
+    Text.text = "[F] Fight";
+    if (!hasSword) Text.text += "<br><color=red>Requires Sword</color>";
+  }
+
+  private void OnInventoryChange(List<InventorySlot> items) {
+    if (inventoryManager.ItemCount(swordPrefab) > 0) {
+      hasSword = true;
+      UpdateText();
+    }
   }
 
   private void OnTriggerEnter(Collider other) {

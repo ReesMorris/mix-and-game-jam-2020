@@ -71,7 +71,6 @@ public class FightManager : MonoBehaviour {
   }
 
   public void Flee() {
-    print("!!! Player is fleeing");
     CanFight(false);
     player.GetComponent<PlayerFight>().ResetForNextFight();
     ActivateFakeMobs();
