@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class MobTrigger : MonoBehaviour {
+
+  public delegate void OnFightInitiate();
+  public static OnFightInitiate onFightInitiate;
 
   private GameObject Player;
   private bool possibleFight = false;
@@ -22,6 +24,7 @@ public class MobTrigger : MonoBehaviour {
     if (Input.GetKeyDown(KeyCode.F) && possibleFight) {
       Player.GetComponent<PlayerFight>().SetPlayerOldPosition(Player.transform.position);
       transform.parent.GetComponent<Mob>().SetOldPosition(transform.position);
+      if (onFightInitiate != null) onFightInitiate();
       TeleportFighters();
     }
   }

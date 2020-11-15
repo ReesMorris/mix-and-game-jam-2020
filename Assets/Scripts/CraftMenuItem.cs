@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class CraftMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
+  public delegate void OnCraftMenuItemPurchase(Item item);
+  public static OnCraftMenuItemPurchase onCraftMenuItemPurchase;
+
   public Image image;
   public TMPro.TMP_Text itemName;
   public GameObject tooltipObject;
@@ -77,6 +80,9 @@ public class CraftMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
       inventoryManager.AddItemToInventory(recipe.output.item, recipe.output.quantity);
       foreach (CraftingRecipeItem item in recipe.ingredients)
         inventoryManager.RemoveItemFromInventory(item.item, item.quantity);
+
+      if (onCraftMenuItemPurchase != null)
+        onCraftMenuItemPurchase(recipe.output.item);
     }
   }
 }

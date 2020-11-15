@@ -11,18 +11,14 @@ public class ChatBubble : MonoBehaviour {
   private List<ChatMessage> textQueue;
   private bool queueActive;
 
-  void Start() {
-    textQueue = new List<ChatMessage>();
-
-    QueueText(new ChatMessage("Why did I move here? I guess it was the weather...", 0.5f));
-  }
-
   void Update() {
     LookAtCamera();
   }
 
   // Sets the bubble text by commencing the coroutine
   public void QueueText(ChatMessage message) {
+    if (textQueue == null) textQueue = new List<ChatMessage>();
+
     textQueue.Add(message);
     if (!queueActive) StartCoroutine(TypeText(message));
 

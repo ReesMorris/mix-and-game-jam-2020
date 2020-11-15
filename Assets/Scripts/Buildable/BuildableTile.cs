@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildableTile : MonoBehaviour {
 
-  public delegate void OnTilePlaced();
+  public delegate void OnTilePlaced(Item tile);
   public static OnTilePlaced onTilePlaced;
 
   public Sprite whiteTile;
@@ -79,6 +79,7 @@ public class BuildableTile : MonoBehaviour {
             empty = false;
             gameObject.layer = 0;
             UpdateTileSprite();
+            if (onTilePlaced != null) onTilePlaced(selectedTile);
             buildableAreaManager.OnTilePlaced();
           }
         }

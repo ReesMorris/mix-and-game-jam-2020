@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class TableTile : MonoBehaviour {
 
+  public delegate void OnItemAddedToTable(Item item);
+  public static OnItemAddedToTable onItemAddedToTable;
+
   public Image image;
   public TMPro.TMP_Text count;
 
@@ -24,6 +27,7 @@ public class TableTile : MonoBehaviour {
       if (tableItem.item && item == tableItem.item) {
         tableItem.quantity++;
         inventoryManager.RemoveItemFromInventory(item, 1);
+        if (onItemAddedToTable != null) onItemAddedToTable(item);
         UpdateUI();
       }
     }
