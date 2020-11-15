@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Mob : MonoBehaviour {
+
+  public delegate void OnPlayerDefeatMob();
+  public static OnPlayerDefeatMob onPlayerDefeatMob;
+
   public Slider Slider;
   public int MaxHealth;
   public int CurrentHealth;
@@ -112,8 +116,6 @@ public class Mob : MonoBehaviour {
 
   private IEnumerator EndFight() {
 
-    print("!!! Player defeated mob");
-
     // Interrupting animation if running
     animationRunning = false;
 
@@ -132,11 +134,16 @@ public class Mob : MonoBehaviour {
     // Mob now dead
     dead = true;
 
+    // Send delegate
+    if (onPlayerDefeatMob != null)
+      onPlayerDefeatMob();
+
     // Fight is ended
     fightManager.CanFight(false);
     ResetForNextFight(); // Resetting
     fightManager.ActivateFakeMobs(); // Activating animated models for attacks
     Destroy(gameObject); // Mob is destroyed
+
   }
 
   private void ResetForNextFight() {

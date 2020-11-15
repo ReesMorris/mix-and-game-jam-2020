@@ -15,6 +15,8 @@ public class TutorialManager : MonoBehaviour {
   private PlayerMovement playerMovement;
   private InventoryManager inventoryManager;
 
+  private bool tutorialFightWinPlayed = false;
+
   void Start() {
     tutorialIndex = 0;
     playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -25,6 +27,7 @@ public class TutorialManager : MonoBehaviour {
     BuildableTile.onTilePlaced += OnTilePlaced;
     TableTile.onItemAddedToTable += OnItemAddedToTable;
     MobTrigger.onFightInitiate += OnFightInitiate;
+    Mob.onPlayerDefeatMob += OnPlayerDefeatMob;
 
     StartCoroutine(Tutorial0());
   }
@@ -50,6 +53,9 @@ public class TutorialManager : MonoBehaviour {
   }
   void OnFightInitiate() {
     if (tutorialIndex == 9 && !sequencePlaying) StartCoroutine(Tutorial9());
+  }
+  void OnPlayerDefeatMob() {
+    if (!tutorialFightWinPlayed) StartCoroutine(TutorialFightWin());
   }
 
   IEnumerator Tutorial0() {
@@ -182,6 +188,15 @@ public class TutorialManager : MonoBehaviour {
     yield return new WaitForSeconds(11f);
     tutorialIndex = 10;
     sequencePlaying = false;
+  }
+
+  IEnumerator TutorialFightWin() {
+    tutorialFightWinPlayed = true;
+    yield return new WaitForSeconds(0.5f);
+    playerChatBubble.QueueText(new ChatMessage("You just won your first fight - and got some loot for it too!", 1.5f));
+    playerChatBubble.QueueText(new ChatMessage("I've nothing more to teach you now, but feel free to continue playing!"));
+    playerChatBubble.QueueText(new ChatMessage("There is no way to save progress, so don't spend too much time!"));
+    playerChatBubble.QueueText(new ChatMessage("Thanks for trying out our Mix and Game Jam 2020 entry!"));
   }
 
 }
