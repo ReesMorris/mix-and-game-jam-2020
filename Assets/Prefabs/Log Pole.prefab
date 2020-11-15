@@ -1320,6 +1320,7 @@ MonoBehaviour:
   - {fileID: 8735854773197642604}
   - {fileID: 8735854773717846240}
   - {fileID: 8735854772911649535}
+  cutSound: {fileID: 8300000, guid: cc246a29bce574f36b1084d178dfdc94, type: 3}
 --- !u!1 &8900044310064271186
 GameObject:
   m_ObjectHideFlags: 0

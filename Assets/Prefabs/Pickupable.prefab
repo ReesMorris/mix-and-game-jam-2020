@@ -343,6 +343,7 @@ MonoBehaviour:
   quantity: 1
   text: {fileID: 7074114326923489182}
   RespawnTime: 60
+  pickupSound: {fileID: 8300000, guid: c09768c1705a74c5dbdbd938f3aab4b9, type: 3}
 --- !u!1 &7074114328197374527
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,16 +11,19 @@ public class LogPoleTrigger : MonoBehaviour {
   public Pickupable pickupablePrefab;
   public Item log;
   public GameObject[] dropSpawns;
+  public AudioClip cutSound;
 
   private InventoryManager inventoryManager;
   private bool hasAxe;
   private bool isChopped;
   private bool playerInRange;
+  private AudioManager audioManager;
 
   void Start() {
     InventoryManager.onInventoryChange += OnInventoryChange;
     GetComponent<MeshRenderer>().enabled = false;
     inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
+    audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
   }
 
   void Update() {
@@ -29,6 +32,7 @@ public class LogPoleTrigger : MonoBehaviour {
         isChopped = true;
         chopped.SetActive(true);
         unchopped.SetActive(false);
+        audioManager.PlaySound(cutSound, true);
         UpdateText();
         DropItems();
         StartCoroutine(Respawn());
