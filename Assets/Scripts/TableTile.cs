@@ -51,6 +51,9 @@ public class TableTile : MonoBehaviour {
     }
   }
 
+  public TableTileItem GetItem() {
+    return tableItem;
+  }
 
   public void OnPlayerEnter() {
     playerClose = true;
