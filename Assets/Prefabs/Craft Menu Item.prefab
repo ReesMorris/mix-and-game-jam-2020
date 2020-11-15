@@ -369,6 +369,7 @@ MonoBehaviour:
   itemName: {fileID: 7459881277875590099}
   tooltipObject: {fileID: 7459881279572085829}
   tooltipText: {fileID: 7459881278092164111}
+  craftSound: {fileID: 8300000, guid: 6f0269617553a4f30bc53f12bec0967e, type: 3}
 --- !u!114 &3992624375239627743
 MonoBehaviour:
   m_ObjectHideFlags: 0

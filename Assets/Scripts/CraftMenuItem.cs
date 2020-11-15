@@ -13,15 +13,18 @@ public class CraftMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
   public TMPro.TMP_Text itemName;
   public GameObject tooltipObject;
   public TMPro.TMP_Text tooltipText;
+  public AudioClip craftSound;
 
   private Image itemBackground;
   private CraftingRecipe recipe;
   private InventoryManager inventoryManager;
   private bool hasAllIngredients;
+  private AudioManager audioManager;
 
   public void Init(CraftingRecipe _recipe) {
     InventoryManager.onInventoryChange += OnInventoryChange;
     inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
+    audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
     itemBackground = GetComponent<Image>();
     recipe = _recipe;
 
@@ -78,6 +81,7 @@ public class CraftMenuItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
   public void OnClick() {
     if (hasAllIngredients) {
       inventoryManager.AddItemToInventory(recipe.output.item, recipe.output.quantity);
+      audioManager.PlaySound(craftSound, true);
       foreach (CraftingRecipeItem item in recipe.ingredients)
         inventoryManager.RemoveItemFromInventory(item.item, item.quantity);
 
