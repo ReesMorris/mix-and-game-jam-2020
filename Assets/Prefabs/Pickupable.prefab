@@ -342,6 +342,7 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 7031750b19f9c444dbbf2bfada4991c3, type: 2}
   quantity: 1
   text: {fileID: 7074114326923489182}
+  RespawnTime: 60
 --- !u!1 &7074114328197374527
 GameObject:
   m_ObjectHideFlags: 0

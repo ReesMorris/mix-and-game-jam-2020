@@ -37,7 +37,7 @@ public class LogPoleTrigger : MonoBehaviour {
   }
 
   IEnumerator Respawn() {
-    yield return new WaitForSeconds(300f);
+    yield return new WaitForSeconds(60f);
     isChopped = false;
     chopped.SetActive(false);
     unchopped.SetActive(true);
