@@ -585,6 +585,7 @@ MonoBehaviour:
   FightSpawn: {fileID: 0}
   Player: {fileID: 0}
   OldMobPosition: {x: 0, y: 0, z: 0}
+  dropItem: {fileID: 11400000, guid: 66e44237b0e8f48f8ab20e484a6aba3d, type: 2}
 --- !u!95 &7360048382951769423
 Animator:
   serializedVersion: 3

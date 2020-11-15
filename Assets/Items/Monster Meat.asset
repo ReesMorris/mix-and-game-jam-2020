@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a565a2f3d8f7349f1a96acc413ed695f, type: 3}
+  m_Name: Monster Meat
+  m_EditorClassIdentifier: 
+  id: 10
+  itemName: Monster Meat
+  type: 0
+  maxStackSize: 2147483647
+  sprite: {fileID: 21300000, guid: 525850778f6584095830696f35ea7192, type: 3}
+  tooltipText: A juicy delicacy eaten only by Ghosts.
+  saleValue: 10

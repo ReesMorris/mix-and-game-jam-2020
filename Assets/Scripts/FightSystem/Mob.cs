@@ -17,11 +17,13 @@ public class Mob : MonoBehaviour {
   public GameObject Player;
   [HideInInspector]
   public Vector3 OldMobPosition;
+  public Item dropItem;
 
   private GameObject fakeMob;
   private FightManager fightManager;
   private bool animationRunning = false;
   private bool defeated = false;
+  private InventoryManager inventoryManager;
 
   private void Start() {
     CurrentHealth = MaxHealth;
@@ -29,6 +31,7 @@ public class Mob : MonoBehaviour {
     Slider.value = CurrentHealth;
 
     fightManager = GameObject.Find("GameManager").GetComponent<FightManager>();
+    inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
   }
 
   private void Update() {
@@ -137,6 +140,9 @@ public class Mob : MonoBehaviour {
     // Send delegate
     if (onPlayerDefeatMob != null)
       onPlayerDefeatMob();
+
+    // Add food to player inventory
+    inventoryManager.AddItemToInventory(dropItem, Random.Range(0, 4));
 
     // Fight is ended
     fightManager.CanFight(false);
