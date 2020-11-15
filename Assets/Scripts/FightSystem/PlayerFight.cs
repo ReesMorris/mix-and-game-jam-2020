@@ -42,6 +42,9 @@ public class PlayerFight : MonoBehaviour {
   }
 
   public void Attack() {
+    if (opponent == null) {
+      opponent = fightManager.GetOpponent(); // Get the opponent
+    }
     StartCoroutine(AttackPhase());
     fightManager.ButtonsActive(false);
   }
@@ -74,29 +77,44 @@ public class PlayerFight : MonoBehaviour {
   }
 
   private IEnumerator AttackPhase() {
-    animationRunning = true;
+    // Disable main player render
     gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+    // Activating animated model for attack
     fakePlayer.SetActive(true);
+
+    // Starting animated model for attack
+    animationRunning = true;
     animator = fakePlayer.GetComponent<Animator>();
     animator.Play("FakePlayer_Attacking");
+
     yield return new WaitForSeconds(0.85f);
-    if (opponent == null) {
-      opponent = fightManager.GetOpponent();
-    }
+
+    // Damaging the opponent
     opponent.HealthDamaged(CurrentDamage);
+
     yield return new WaitForSeconds(1.65f);
+
+    // Animated player disabled
     fakePlayer.SetActive(false);
+
+    // Main sprite re-enabled
     gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+    // Stopping the animation
     animationRunning = false;
+
+    //Updating the turn
     fightManager.currentTurn = FightManager.Turn.Mob;
   }
 
   public void ResetForNextFight() {
-    gameObject.GetComponent<PlayerMovement>().CanMove(true);
-    CurrentHealth = MaxHealth;
-    slider.value = CurrentHealth;
-    ReturnToOldPosition();
-    fightManager.ShowFightUI(false);
+    gameObject.GetComponent<PlayerMovement>().CanMove(true); // Player able to move again
+    CurrentHealth = MaxHealth; // Resetting player's health after fight
+    slider.value = CurrentHealth; // Updating healthbar
+    ReturnToOldPosition(); // Moving player back to old pos
+    fightManager.ShowFightUI(false); // Hide UI
+    opponent = null; // resetting opponent
   }
 
 }

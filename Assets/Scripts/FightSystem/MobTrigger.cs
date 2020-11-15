@@ -21,6 +21,7 @@ public class MobTrigger : MonoBehaviour {
   private void Update() {
     if (Input.GetKeyDown(KeyCode.F) && possibleFight) {
       Player.GetComponent<PlayerFight>().SetPlayerOldPosition(Player.transform.position);
+      transform.parent.GetComponent<Mob>().SetOldPosition(transform.position);
       TeleportFighters();
     }
   }
@@ -41,12 +42,11 @@ public class MobTrigger : MonoBehaviour {
 
     // ready to fight
     fightManager.CanFight(true);
-    fightManager.SetOpponent(transform.parent.gameObject.GetComponent<Mob>()); // setting player's opponent
+    fightManager.SetOpponent(transform.parent.gameObject.GetComponent<Mob>()); // storing player's opponent
 
     // activate health bars
     fightManager.ShowFightUI(true);
 
-    print("hello");
   }
 
   private void OnTriggerEnter(Collider other) {

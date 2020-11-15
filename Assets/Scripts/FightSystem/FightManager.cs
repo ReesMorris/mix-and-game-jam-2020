@@ -8,7 +8,9 @@ public class FightManager : MonoBehaviour {
   private bool fighting = false;
   private Mob opponent;
   private GameObject player;
+
   public Turn currentTurn;
+  public GameObject[] FakeMobs;
 
   public enum Turn {
     Player,
@@ -26,12 +28,28 @@ public class FightManager : MonoBehaviour {
 
     switch (opponent.name) {
       case "Crab":
-        opponent.SetFakeMob("FakeCrab");
+        opponent.SetFakeMob("Fake" + opponent.name); ;
+        foreach (GameObject m in FakeMobs) {
+          m.SetActive(false);
+        }
+        break;
+      case "Bee":
+        opponent.SetFakeMob("Fake" + opponent.name); ;
+        foreach (GameObject m in FakeMobs) {
+          m.SetActive(false);
+        }
+        break;
+      case "Bird":
+        opponent.SetFakeMob("Fake" + opponent.name); ;
+        foreach (GameObject m in FakeMobs) {
+          m.SetActive(false);
+        }
         break;
       default:
         opponent.SetFakeMob("");
         break;
     }
+
   }
 
   public Mob GetOpponent() {
@@ -42,6 +60,12 @@ public class FightManager : MonoBehaviour {
     fighting = mode;
   }
 
+  public void ActivateFakeMobs() {
+    foreach (GameObject m in FakeMobs) {
+      m.SetActive(true);
+    }
+  }
+
   public bool Fighting() {
     return fighting;
   }
@@ -49,6 +73,9 @@ public class FightManager : MonoBehaviour {
   public void Flee() {
     CanFight(false);
     player.GetComponent<PlayerFight>().ResetForNextFight();
+    ActivateFakeMobs();
+    opponent.transform.position = opponent.OldMobPosition;
+    opponent.SetFakeMob("");
   }
 
   public void ButtonsActive(bool a) {
@@ -66,7 +93,7 @@ public class FightManager : MonoBehaviour {
       opponent.transform.Find("Canvas/MobHealthBar").gameObject.SetActive(true);
     } else {
       foreach (Button b in Buttons) {
-        b.GetComponent<Image>().gameObject.SetActive(true);
+        b.GetComponent<Image>().gameObject.SetActive(false);
       }
       player.transform.Find("Canvas/PlayerHealthBar").gameObject.SetActive(false);
       opponent.transform.Find("Canvas/MobHealthBar").gameObject.SetActive(false);
