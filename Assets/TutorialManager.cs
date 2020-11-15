@@ -28,7 +28,9 @@ public class TutorialManager : MonoBehaviour {
     TableTile.onItemAddedToTable += OnItemAddedToTable;
     MobTrigger.onFightInitiate += OnFightInitiate;
     Mob.onPlayerDefeatMob += OnPlayerDefeatMob;
+  }
 
+  public void StartTutorial() {
     StartCoroutine(Tutorial0());
   }
 
