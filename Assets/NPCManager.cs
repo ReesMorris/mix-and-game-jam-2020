@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,19 @@ public class NPCManager : MonoBehaviour {
   public NPCWaypoints[] afterShop;
 
   void Start() {
-    SpawnNPC();
+    StartCoroutine(Spawner());
+  }
+
+  IEnumerator Spawner() {
+    while (true) {
+      yield return new WaitForSeconds(3f);
+      SpawnNPC();
+    }
   }
 
   public void SpawnNPC() {
     NPC npc = Instantiate(npcPrefab);
-    npc.Init(GetRandomWaypoints(beforeShop), GetRandomWaypoints(afterShop));
+    npc.Init(GetRandomWaypoints(beforeShop), GetRandomWaypoints(afterShop), skins[Random.Range(0, skins.Length)]);
   }
 
   public List<Transform> GetRandomWaypoints(NPCWaypoints[] waypoints) {

@@ -29,21 +29,25 @@ public class PlayerPickupableTrigger : MonoBehaviour {
 
   // Called when the player enters a pickupable collider
   private void OnTriggerEnter(Collider other) {
-    Pickupable pickupable = other.transform.parent.GetComponent<Pickupable>();
+    if (other.transform.parent) {
+      Pickupable pickupable = other.transform.parent.GetComponent<Pickupable>();
 
-    if (pickupable != null) {
-      pickupablesInRange.Add(pickupable);
-      SetTargetPickupable(pickupablesInRange.Count - 1);
+      if (pickupable != null) {
+        pickupablesInRange.Add(pickupable);
+        SetTargetPickupable(pickupablesInRange.Count - 1);
+      }
     }
   }
 
   // Called when the player exits a pickupable collider
   private void OnTriggerExit(Collider other) {
-    Pickupable pickupable = other.transform.parent.GetComponent<Pickupable>();
+    if (other.transform.parent) {
+      Pickupable pickupable = other.transform.parent.GetComponent<Pickupable>();
 
-    if (pickupable != null) {
-      pickupablesInRange.Remove(pickupable);
-      SetTargetPickupable(0);
+      if (pickupable != null) {
+        pickupablesInRange.Remove(pickupable);
+        SetTargetPickupable(0);
+      }
     }
   }
 

@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!54 &7563540444683941530
@@ -113,6 +113,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0920c467a9e444a47ba02e093e47ac3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 11400000, guid: 1ba2b454876e143569a0f0dc965c903f, type: 2}
+  beforeShopWaypoints: []
+  afterShopWaypoints: []
+  spriteRenderer: {fileID: 0}
+  currentWaypoint: 0
+  currentWaypointTransform: {fileID: 0}
+  speed: 0
+  willShop: 0
+  targetTable: {fileID: 0}
+  isUsingBeforeShopWaypoints: 0
+  boughtItem: 0
 --- !u!1 &7563540444712147384
 GameObject:
   m_ObjectHideFlags: 0

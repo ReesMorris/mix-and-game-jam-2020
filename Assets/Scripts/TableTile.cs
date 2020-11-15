@@ -39,15 +39,19 @@ public class TableTile : MonoBehaviour {
     }
   }
 
+  public void RemoveItem() {
+    if (tableItem != null && tableItem.quantity > 0) {
+      tableItem.quantity--;
+      inventoryManager.AddItemToInventory(tableItem.item, 1);
+      if (tableItem.quantity == 0)
+        tableItem = new TableTileItem(null, 0);
+      UpdateUI();
+    }
+  }
+
   private void OnMouseOver() {
     if (Input.GetMouseButtonDown(1)) {
-      if (tableItem != null && tableItem.quantity > 0) {
-        tableItem.quantity--;
-        inventoryManager.AddItemToInventory(tableItem.item, 1);
-        if (tableItem.quantity == 0)
-          tableItem = new TableTileItem(null, 0);
-        UpdateUI();
-      }
+      RemoveItem();
     }
   }
 
