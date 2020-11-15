@@ -8,13 +8,16 @@ public class Pickupable : MonoBehaviour {
   public int quantity = 1;
   public TMPro.TMP_Text text;
   public float RespawnTime;
+  public AudioClip pickupSound;
 
   private InventoryManager inventoryManager;
+  private AudioManager audioManager;
   private SpriteRenderer spriteRenderer;
   private Vector3 OldPosition;
 
   void Start() {
     inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
+    audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
     spriteRenderer = GetComponent<SpriteRenderer>();
     spriteRenderer.sprite = item.sprite;
     OldPosition = transform.position;
@@ -28,6 +31,7 @@ public class Pickupable : MonoBehaviour {
   public void Pickup() {
     inventoryManager.AddItemToInventory(item, quantity);
     StartCoroutine(MoveAndRespawn(RespawnTime));
+    audioManager.PlaySound(pickupSound, true);
   }
 
   public void ShowText(bool withTabText) {

@@ -366,3 +366,4 @@ MonoBehaviour:
   chatContainer: {fileID: 5547611365475302665}
   panel: {fileID: 5547611364151124378}
   displayText: {fileID: 5547611364720903706}
+  audioClip: {fileID: 8300000, guid: 8a83e1c357b704330ac82c5f0182460d, type: 3}

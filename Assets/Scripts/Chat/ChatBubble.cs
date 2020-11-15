@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChatBubble : MonoBehaviour {
+
   public float textSpeed = 0.05f;
   public RectTransform chatContainer;
   public GameObject panel;
   public TMPro.TMP_Text displayText;
+  public AudioClip audioClip;
 
   private List<ChatMessage> textQueue;
   private bool queueActive;
+  private AudioManager audioManager;
+
+  void Start() {
+    audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
+  }
 
   void Update() {
     LookAtCamera();
@@ -21,7 +28,6 @@ public class ChatBubble : MonoBehaviour {
 
     textQueue.Add(message);
     if (!queueActive) StartCoroutine(TypeText(message));
-
   }
 
   // Coroutine for typing animation
@@ -34,6 +40,7 @@ public class ChatBubble : MonoBehaviour {
 
     for (int i = 0; i < chatMessage.message.Length; i++) {
       displayText.text += chatMessage.message[i];
+      audioManager.PlaySound(audioClip, true);
       yield return new WaitForSeconds(textSpeed);
     }
 
