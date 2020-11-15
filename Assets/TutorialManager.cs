@@ -62,10 +62,10 @@ public class TutorialManager : MonoBehaviour {
     playerMovement.CanMove(false);
     sequencePlaying = true;
     playerChatBubble.QueueText(new ChatMessage("Ahh, here I am at last."));
-    playerChatBubble.QueueText(new ChatMessage("Ghost Island™!", 1));
-    playerChatBubble.QueueText(new ChatMessage("I suppose I should start following my court order mandate.."));
-    playerChatBubble.QueueText(new ChatMessage("The sooner I have built this shop, the sooner I can go home!", 1));
-    playerChatBubble.QueueText(new ChatMessage("First thing's first, let's head directly north and go see the empty plot of land."));
+    playerChatBubble.QueueText(new ChatMessage("Ghost Island™!"));
+    playerChatBubble.QueueText(new ChatMessage("I suppose I should start following my court order mandate..", 1));
+    playerChatBubble.QueueText(new ChatMessage("The sooner I have built this shop, the sooner I can go home!"));
+    playerChatBubble.QueueText(new ChatMessage("First thing's first, let's head directly north and go see the empty plot of land.", 1));
     yield return new WaitForSeconds(22f);
     playerMovement.CanMove(true);
     tutorialIndex = 1;
@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour {
     sequencePlaying = true;
     yield return new WaitForSeconds(0.5f);
     playerMovement.CanMove(false);
-    playerChatBubble.QueueText(new ChatMessage("Here it is! 90 square meters of pure, uninhabited land.", 1));
+    playerChatBubble.QueueText(new ChatMessage("Here it is! 90 square meters of pure, uninhabited land."));
     playerChatBubble.QueueText(new ChatMessage("I suppose I should open my build tools in the lower-left corner to see what I can make."));
     tutorialIndex = 2;
     sequencePlaying = false;
@@ -104,8 +104,8 @@ public class TutorialManager : MonoBehaviour {
     playerMovement.CanMove(false);
     yield return new WaitForSeconds(0.5f);
     playerChatBubble.QueueText(new ChatMessage("Here are my items! Anything I pick up will appear here."));
-    playerChatBubble.QueueText(new ChatMessage("Most things I find can be sold in the shop.", 1));
-    playerChatBubble.QueueText(new ChatMessage("Let's look at the last menu in the lower-left corner, crafting."));
+    playerChatBubble.QueueText(new ChatMessage("Most things I find can be sold in the shop."));
+    playerChatBubble.QueueText(new ChatMessage("Let's look at the last menu in the lower-left corner, crafting.", 1));
     tutorialIndex = 4;
     sequencePlaying = false;
   }
@@ -142,9 +142,10 @@ public class TutorialManager : MonoBehaviour {
     yield return new WaitForSeconds(0.5f);
     playerChatBubble.QueueText(new ChatMessage("Look how nice that table looks!"));
     playerChatBubble.QueueText(new ChatMessage("We're going to get customers very soon.. how exciting!"));
-    playerChatBubble.QueueText(new ChatMessage("We'll need to put something actually on the table first, though.", 1));
-    playerChatBubble.QueueText(new ChatMessage("Stand next to the table and left-click anything in your inventory that has a sale value."));
+    playerChatBubble.QueueText(new ChatMessage("We'll need to put something actually on the table first, though."));
+    playerChatBubble.QueueText(new ChatMessage("Stand next to the table and left-click anything in your inventory that has a sale value.", 1));
     playerChatBubble.QueueText(new ChatMessage("That'll add x1 of that item onto the table, but you can keep clicking."));
+    playerChatBubble.QueueText(new ChatMessage("You can also right-click on the table to take items back."));
     yield return new WaitForSeconds(22f);
     tutorialIndex = 7;
     playerMovement.CanMove(true);
@@ -193,8 +194,8 @@ public class TutorialManager : MonoBehaviour {
   IEnumerator TutorialFightWin() {
     tutorialFightWinPlayed = true;
     yield return new WaitForSeconds(0.5f);
-    playerChatBubble.QueueText(new ChatMessage("You just won your first fight - and got some loot for it too!", 1.5f));
-    playerChatBubble.QueueText(new ChatMessage("I've nothing more to teach you now, but feel free to continue playing!"));
+    playerChatBubble.QueueText(new ChatMessage("You just won your first fight - and got some loot for it too!"));
+    playerChatBubble.QueueText(new ChatMessage("I've nothing more to teach you now, but feel free to continue playing!", 1.5f));
     playerChatBubble.QueueText(new ChatMessage("There is no way to save progress, so don't spend too much time!"));
     playerChatBubble.QueueText(new ChatMessage("Thanks for trying out our Mix and Game Jam 2020 entry!"));
   }

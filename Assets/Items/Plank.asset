@@ -18,4 +18,4 @@ MonoBehaviour:
   maxStackSize: 2147483647
   sprite: {fileID: -944321741872207433, guid: 07b08651343384466bc01d16393057d3, type: 3}
   tooltipText: Filled with woody nutrients.
-  saleValue: 5
+  saleValue: 1
