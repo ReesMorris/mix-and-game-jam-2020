@@ -8,15 +8,19 @@ public class BuildableTile : MonoBehaviour {
   public static OnTilePlaced onTilePlaced;
 
   public Sprite whiteTile;
+  public AudioClip demolishSound;
+  public AudioClip placeSound;
 
   private bool empty = true;
   private SpriteRenderer spriteRenderer;
   private Color color;
   private Item selectedTile;
   private BuildableAreaManager buildableAreaManager;
+  private AudioManager audioManager;
 
   private void Start() {
     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    audioManager = GameObject.Find("GameManager").GetComponent<AudioManager>();
     color = spriteRenderer.material.color;
 
     color.a = 0.2f;
@@ -62,6 +66,7 @@ public class BuildableTile : MonoBehaviour {
           spriteRenderer.material.color = color;
 
           if (Input.GetMouseButtonDown(0)) {
+            audioManager.PlaySound(demolishSound, true);
             empty = true;
             gameObject.layer = 8;
             UpdateTileSprite();
@@ -74,6 +79,7 @@ public class BuildableTile : MonoBehaviour {
         // Build item
         if (Input.GetMouseButtonDown(0) && empty) {
           if (buildableAreaManager.CanBuildSelectedItem()) {
+            audioManager.PlaySound(placeSound, true);
             color.a = 1f;
             spriteRenderer.material.color = color;
             empty = false;
