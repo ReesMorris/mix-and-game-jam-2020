@@ -10,25 +10,30 @@ public class TableTile : MonoBehaviour {
 
   public Image image;
   public TMPro.TMP_Text count;
+  public Item tablePrefab;
 
   private TableTileItem tableItem;
+  private BuildableTile buildableTile;
   private InventoryManager inventoryManager;
-  private bool playerClose;
+  public bool playerClose;
 
   void Start() {
     tableItem = new TableTileItem(null, 0);
+    buildableTile = GetComponent<BuildableTile>();
     inventoryManager = GameObject.Find("GameManager").GetComponent<InventoryManager>();
     InventoryRendererSlot.onInventorySlotClick += OnInventorySlotClick;
   }
 
   void OnInventorySlotClick(Item item) {
-    if (playerClose && item.saleValue > 0) {
-      if (!tableItem.item) tableItem = new TableTileItem(item, 0);
-      if (tableItem.item && item == tableItem.item) {
-        tableItem.quantity++;
-        inventoryManager.RemoveItemFromInventory(item, 1);
-        if (onItemAddedToTable != null) onItemAddedToTable(item);
-        UpdateUI();
+    if (buildableTile.GetSelectedTile() == tablePrefab) {
+      if (playerClose && item.saleValue > 0) {
+        if (!tableItem.item) tableItem = new TableTileItem(item, 0);
+        if (tableItem.item && item == tableItem.item) {
+          tableItem.quantity++;
+          inventoryManager.RemoveItemFromInventory(item, 1);
+          if (onItemAddedToTable != null) onItemAddedToTable(item);
+          UpdateUI();
+        }
       }
     }
   }
