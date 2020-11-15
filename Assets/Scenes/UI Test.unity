@@ -126388,6 +126388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTurn: 0
+  FakeMobs: []
   Buttons: []
 --- !u!114 &1954704958
 MonoBehaviour:
@@ -126413,6 +126414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9741aab060b047ebb331392afa06133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcPrefab: {fileID: 0}
   skins: []
   beforeShop:
   - waypoints:
